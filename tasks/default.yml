@@ -90,3 +90,6 @@
   with_items: '{{anaconda_install_packages | default([])}}'
   loop_control:
     loop_var: anaconda_pkg
+
+- name: setup paths for .zsh
+  command: '{{ anaconda_install_dir }}/bin/conda init zsh'
