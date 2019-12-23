@@ -55,13 +55,15 @@
 
 - name: update conda permissions
   become: true
-  file: "{{ anaconda_install_dir }}"
+  file:
+    path: "{{ anaconda_install_dir }}"
     recurse: yes
     user: "{{ user.stdout }}"
 
 - name: update link
   become: true
-  file: "{{ anaconda_link_dir }}"
+  file:
+    path: "{{ anaconda_link_dir }}"
     user: "{{ user.stdout }}"
 
 - name: update conda pkgs...
