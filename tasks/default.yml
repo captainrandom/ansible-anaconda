@@ -49,8 +49,20 @@
     dest: '{{anaconda_link_dir}}'
     state: link
 
-- name: update permissions
-  command: ls {{ anaconda_parent_dir }} | grep -i anaconda | xargs -I {} sudo chmod -R $USER {}
+- name: get user
+  command: echo $USER
+  register: user
+
+- name: update conda permissions
+  become: true
+  file: "{{ anaconda_install_dir }}"
+    recurse: yes
+    user: "{{ user.stdout }}"
+
+- name: update link
+  become: true
+  file: "{{ anaconda_link_dir }}"
+    user: "{{ user.stdout }}"
 
 - name: update conda pkgs...
   become: yes
