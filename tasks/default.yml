@@ -58,13 +58,13 @@
   file:
     path: "{{ anaconda_install_dir }}"
     recurse: yes
-    user: "{{ user.stdout }}"
+    owner: "{{ user.stdout }}"
 
 - name: update link
   become: true
   file:
     path: "{{ anaconda_link_dir }}"
-    user: "{{ user.stdout }}"
+    owner: "{{ user.stdout }}"
 
 - name: update conda pkgs...
   become: yes
