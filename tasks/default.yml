@@ -50,7 +50,7 @@
     state: link
 
 - name: update permissions
-  command: ls | grep -i anaconda | xargs -I {} sudo chmod -R $USER {}
+  command: ls {{ anaconda_parent_dir }} | grep -i anaconda | xargs -I {} sudo chmod -R $USER {}
 
 - name: update conda pkgs...
   become: yes
