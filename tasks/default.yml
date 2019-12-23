@@ -19,8 +19,6 @@
 - when: not anaconda_conda_binary.stat.exists
   block:
     - name: download installer...
-      become: yes
-      become_user: root
       get_url:
         url: '{{anaconda_installer_url}}'
         dest: /tmp/{{anaconda_installer_sh}}
@@ -50,6 +48,9 @@
     src: '{{anaconda_install_dir}}'
     dest: '{{anaconda_link_dir}}'
     state: link
+
+- name: update permissions
+  command: ls | grep -i anaconda | xargs -I {} sudo chmod -R $USER {}
 
 - name: update conda pkgs...
   become: yes
