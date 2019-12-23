@@ -91,5 +91,8 @@
   loop_control:
     loop_var: anaconda_pkg
 
-- name: setup paths for .zsh
+- name: setup paths for zsh
   command: '{{ anaconda_install_dir }}/bin/conda init zsh'
+
+- name: setup paths for bash
+  command: '{{ anaconda_install_dir }}/bin/conda init bash'
